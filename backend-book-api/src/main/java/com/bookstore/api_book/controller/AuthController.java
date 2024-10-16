@@ -4,7 +4,10 @@ import com.bookstore.api_book.dto.LoginRequest;
 import com.bookstore.api_book.dto.RegisterRequest;
 import com.bookstore.api_book.model.User;
 import com.bookstore.api_book.repository.UserRepository;
+import com.bookstore.api_book.service.AuthService;
 import com.bookstore.api_book.service.JwtService;
+import com.bookstore.api_book.service.UserService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final AuthService authService;
 
 
     @PostMapping("/login")
@@ -53,18 +57,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
-
-        if (userRepository.findByUsername(request.name()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username already exists");
-        }
-
-        User user = new User();
-        user.setEmail(request.email());
-        user.setUsername(request.username());
-        user.setName(request.name());
-        user.setLastName(request.lastName());
-        user.setPassword(passwordEncoder.encode(request.password()));
-        userRepository.save(user);
+        
+        authService.registerUser(request);
 
         return ResponseEntity.ok("User registered successfully");
     }
