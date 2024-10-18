@@ -1,13 +1,9 @@
 package com.bookstore.api_book.service;
 
-import javax.management.RuntimeErrorException;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.bookstore.api_book.dto.LoginRequest;
 import com.bookstore.api_book.dto.RegisterRequest;
 import com.bookstore.api_book.model.User;
 import com.bookstore.api_book.repository.UserRepository;
@@ -19,13 +15,10 @@ public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final AuthenticationManager authenticationManager;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-            AuthenticationManager authenticationManager) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
     }
 
     public void registerUser(RegisterRequest registerRequest) {
