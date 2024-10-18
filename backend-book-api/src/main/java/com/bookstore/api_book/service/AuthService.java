@@ -30,7 +30,7 @@ public class AuthService {
 
     public void registerUser(RegisterRequest registerRequest) {
 
-        if (userRepository.findByUsername(registerRequest.name()).isPresent()) {
+        if (userRepository.findByEmail(registerRequest.email()).isPresent()) {
             //TODO: make exception
             throw new RuntimeException("Username already taken");
         }
