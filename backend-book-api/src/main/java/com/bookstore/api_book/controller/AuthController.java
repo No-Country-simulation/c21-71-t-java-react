@@ -33,14 +33,14 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, Authentication auth) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            String token = authService.loginUser(loginRequest);
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            //TODO: make exception
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email/password supplied");
         }
 
 

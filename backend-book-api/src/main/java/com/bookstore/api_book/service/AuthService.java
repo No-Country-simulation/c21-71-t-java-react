@@ -38,4 +38,25 @@ public class AuthService {
         userRepository.save(user);
     }
 
+    public String loginUser(LoginRequest loginRequest) {
+
+        User user = userRepository.findByEmail(loginRequest.email())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+
+
+        if (!passwordEncoder.matches(loginRequest.password(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        Authentication auth = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
+
+        System.out.println("AuthService login " + auth.getName());
+        String token = jwtService.generateToken(auth.getName());
+
+        return token;
+
+    }
+
 }
