@@ -2,16 +2,11 @@ package com.bookstore.api_book.controller;
 
 import com.bookstore.api_book.dto.LoginRequest;
 import com.bookstore.api_book.dto.RegisterRequest;
-import com.bookstore.api_book.repository.UserRepository;
 import com.bookstore.api_book.service.AuthService;
-import com.bookstore.api_book.service.JwtService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
