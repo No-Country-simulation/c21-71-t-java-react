@@ -19,7 +19,7 @@ public class UserController {
     public UserController(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
     }
-
+    //TODO: add role admin to all methods
     @DeleteMapping("/{id}")
     public ResponseEntity<String>deleteUser(
             @PathVariable Long id,
@@ -71,6 +71,36 @@ public class UserController {
             }
             userServiceImpl.updatePassword(id, (updatePasswordRequest.password()));
             return ResponseEntity.ok("Password updated successfully");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<String>updateUser(
+            @PathVariable Long id,
+            @RequestBody UserResponse userResponse,
+            Authentication authentication
+    ) {
+        try {
+            // Move to own method
+            // get the authenticated user
+            String authenticatedUsername = authentication.getName();
+
+            // get the user to update
+            UserResponse userToUpdate = userServiceImpl.getUserById(id);
+
+            boolean isSameUser = userToUpdate.email().equals(authenticatedUsername);
+
+            if (!isSameUser) {
+                return ResponseEntity
+                        .status(HttpStatus.FORBIDDEN)
+                        .body("No tienes permisos para cambiar esta contraseña");
+            }
+            userServiceImpl.updatedUser(id, userResponse.name(), userResponse.lastName(), userResponse.email());
+            return ResponseEntity.ok("User updated successfully");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

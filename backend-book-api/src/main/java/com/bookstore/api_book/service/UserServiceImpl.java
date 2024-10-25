@@ -44,6 +44,17 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    @Override
+    public void updatedUser(Long id, String name, String lastName, String email) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        userRepository.save(user);
+        System.out.println("User updated successfully");
+    }
+
     private UserResponse mapUserToUserResponse(User user) {
         return new UserResponse(
                 user.getId(),
