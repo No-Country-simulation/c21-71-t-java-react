@@ -1,0 +1,19 @@
+.home {
+    text-align: center;
+    background-color: #D9CE9A;
+}
+
+.home-header {
+    background-color: #260909;
+    align-items: flex-end;
+    color: #ffff;
+}
+
+.home-link {
+    text-align: center;
+}
+
+.home-body {
+    text-align: center;
+    align-items: center;
+}
