@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Table(name = "books")
 @Entity
 @Getter
@@ -34,8 +36,28 @@ public class Book {
     private String description;
 
     private int authorId;
+
     private String language;
 
     private String imageUrL;
+
+    @OneToMany(mappedBy = "book")
+    private Set<Loan> loans;
+
+    public boolean hasStock(){
+        return stock > 0;
+    }
+
+    public void reduceStock(){
+        if (stock > 0){
+            stock--;
+        }else {
+            throw new RuntimeException("Stock is empty");
+        }
+    }
+
+    public void increaseStock(){
+        stock++;
+    }
 
 }
