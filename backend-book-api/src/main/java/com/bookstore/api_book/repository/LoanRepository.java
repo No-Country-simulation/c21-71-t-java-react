@@ -1,16 +1,14 @@
 package com.bookstore.api_book.repository;
 
 import com.bookstore.api_book.model.Loan;
-import com.bookstore.api_book.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-        Optional<User> findByEmail(String email);
+public interface LoanRepository extends JpaRepository<Loan, Long> {
 
+    List<Loan> findByUserId(Long userId);
+    List<Loan> findByBookId(Long bookId);
 }
