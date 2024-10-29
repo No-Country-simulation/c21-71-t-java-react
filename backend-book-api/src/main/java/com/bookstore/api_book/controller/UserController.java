@@ -78,7 +78,7 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/password")
     public ResponseEntity<String>updateUser(
             @PathVariable Long id,
             @RequestBody UserResponse userResponse,
