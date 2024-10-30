@@ -13,6 +13,7 @@ información de los clientes (usuarios) y los prestamos.
 |Nombre|Rol|Linkedin|
 |------|---|--------|
 |Ivan Ramírez|Backend|[Linkedin](www.linkedin.com/in/ivan-ramírez-714994255)
+|André Cáceres|Backend|[Linkedin](https://www.linkedin.com/in/andre-caceres-cortes/)
 |Lizbeth Zarazua|Frontend & UX/UI|[Linkedin](www.linkedin.com/in/lizbeth-zarazua/)
 
 
