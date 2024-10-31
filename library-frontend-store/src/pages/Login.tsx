@@ -37,4 +37,3 @@ const Log: React.FC = () => {
 };
 
 export default Log;
-

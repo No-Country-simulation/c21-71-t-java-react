@@ -1,38 +1,130 @@
-.App {
+/* Fondo de la página */
+body {
+  background-color: #d9ce9a;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Encabezado */
+.header {
+  background-color: #260909; 
+  color: #BFA893;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+position: relative;
+}
+
+
+.header h1 {
+  font-size: 2rem;
+  margin: 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo {
+  position: absolute;
+  left: 1rem;
+  width: 95px;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #D9CE9A;
-  min-height: 100vh;
+/* Contenedor principal */
+.main-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+  padding: 7rem;
+  
 }
 
-.App-link {
-  color: #A6524B;
+.login-container {
+  background-color: #260909;
+  padding: 3rem;
+  color: #BEA893;
+  width: 300px;
+  border-radius: 9px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-container h2 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #BEA893;
+  color: #260909;
+
+}
+
+.button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 25px;
+  background-color: #A6514A; 
+  color: #260909;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.link {
+  display: block;
+  text-align: right;
+  margin-top: 2rem;
+  color: #BEA893;
+  text-decoration: none;
+}
+
+/* Sección de texto */
+.text-container {
+  color: #3f0f0f;
+  text-align: center;
+  max-width: 400px;
+}
+
+.text-container p {
+  font-size: 1.2rem;
+}
+
+.text-container h3 {
+  font-size: 1.5rem;
+}
+
+.text-container .button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 25px;
+  background-color: #A6514A;
+  color: #260909;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #260909;
+    color: #BFA893;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.footer-link {
+    color: #BFA893;
+    text-decoration: none;
+    font-size: 1rem;
 }
