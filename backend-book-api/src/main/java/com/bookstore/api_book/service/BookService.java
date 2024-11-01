@@ -18,7 +18,7 @@ public interface BookService {
 
     Page<BookResponse> getAllBooks(Pageable pageable);
 
-    List<BookResponseDto> getAllBooksDto();
+    Page<BookResponseDto> getAllBooksDto(Pageable pageable);
 
     BookResponse getBook(Long id);
 

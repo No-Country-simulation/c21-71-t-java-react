@@ -78,8 +78,8 @@ public class BookController {
     }
 
     @GetMapping("/test")
-    public List<BookResponseDto> getBooksDto(){
-        return bookService.getAllBooksDto();
+    public Page<BookResponseDto> getBooksDto(@PageableDefault(page = 0, size = 5) Pageable pageable){
+        return bookService.getAllBooksDto(pageable);
     }
 
 }

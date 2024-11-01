@@ -1,10 +1,10 @@
 package com.bookstore.api_book.dto;
 
 public record BookResponseDto(
-        String titulo,
+        String title,
         int autorId,
         int year,
-        int unidadesDisponibles,
+        int stock,
         long unidadesPrestadas
 ) {
 }

@@ -68,8 +68,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookResponseDto> getAllBooksDto() {
-        List<BookResponseDto> booksPage = bookRepository.getAllBooks();
+    public Page<BookResponseDto> getAllBooksDto(Pageable pageable) {
+        Page<BookResponseDto> booksPage = bookRepository.getAllBooksDto(pageable);
         return booksPage;
     }
 

@@ -41,7 +41,7 @@ public class LoanServiceImpl implements LoanService {
             throw new RuntimeException("Book has no stock");
         }
 
-        User user = userRepository.findById(loanRequest.userId()).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findByEmail(loanRequest.email()).orElseThrow(() -> new RuntimeException("User not found"));
 
         LocalDate loanDate = LocalDate.now();
         LocalDate returnDate = loanDate.plusMonths(1);
