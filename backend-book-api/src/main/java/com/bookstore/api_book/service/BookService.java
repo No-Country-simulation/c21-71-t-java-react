@@ -16,4 +16,5 @@ public interface BookService {
     BookResponse getBook(Long id);
 
     List<BookResponse> getBooks();
+    List<BookResponse> searchBooks(String searchTerm, List<Long> genreIds);
 }

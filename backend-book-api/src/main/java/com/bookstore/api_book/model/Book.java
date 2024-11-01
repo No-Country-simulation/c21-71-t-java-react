@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "books")
@@ -21,9 +22,6 @@ public class Book {
 
     private String isbn;
 
-    //TODO possible create array of genres
-    private String genre;
-
     //TODO possible create a new table for publisherId
     private int publishedId;
 
@@ -40,6 +38,14 @@ public class Book {
     private String language;
 
     private String imageUrL;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "genre_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<Genre> genres = new HashSet<>();
 
     @OneToMany(mappedBy = "book")
     private Set<Loan> loans;

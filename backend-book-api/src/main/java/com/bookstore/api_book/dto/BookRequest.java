@@ -1,5 +1,9 @@
 package com.bookstore.api_book.dto;
 
+import com.bookstore.api_book.model.Genre;
+
+import java.util.Set;
+
 public record BookRequest(String title,
 
                           int year,
@@ -7,7 +11,7 @@ public record BookRequest(String title,
                           String isbn,
 
                           //TODO possible create array of genres
-                          String genre,
+                          Set<Genre> genres,
 
                           //TODO possible create a new table for publisherId
                           int publisherId,
@@ -19,5 +23,6 @@ public record BookRequest(String title,
                           int stock,
 
                           String description,
-int authorId) {
-}
+                          int authorId,
+                          String language
+) { }
