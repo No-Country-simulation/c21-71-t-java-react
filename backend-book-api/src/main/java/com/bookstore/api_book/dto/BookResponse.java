@@ -1,5 +1,9 @@
 package com.bookstore.api_book.dto;
 
+import com.bookstore.api_book.model.Genre;
+
+import java.util.Set;
+
 public record BookResponse(String title,
 
                            int year,

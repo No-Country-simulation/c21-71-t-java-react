@@ -20,7 +20,6 @@ import java.io.IOException;
 
 
 @Component
-@AllArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
 
@@ -49,7 +48,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         userEmail = jwtService.extractEmail(jwt);
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
@@ -61,8 +60,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+
+
     }
-
-
-
 }
