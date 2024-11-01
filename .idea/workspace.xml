@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1b944ac0-bf0a-4986-afaf-61f5997e55dc" name="Changes" comment="&quot;pagable books&quot;" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nzt2G7WMXUB91wHOcplv5Tf1FE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ApiBookApplication.executor": "Run",
+    "git-widget-placeholder": "book__loan",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/yabeto/library_project/c21-71-t-java-react",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "ts.external.directory.path": "C:\\Users\\yabeto\\library_project\\c21-71-t-java-react\\library-frontend-store\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yabeto\library_project\c21-71-t-java-react\backend-book-api\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="DatabaseScript" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="ApiBookApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="api-book" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bookstore.api_book.ApiBookApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1b944ac0-bf0a-4986-afaf-61f5997e55dc" name="Changes" comment="" />
+      <created>1729987522624</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729987522624</updated>
+      <workItem from="1729987523710" duration="12896000" />
+      <workItem from="1730005021558" duration="33000" />
+      <workItem from="1730039812396" duration="20805000" />
+      <workItem from="1730083323523" duration="39000" />
+      <workItem from="1730119504147" duration="11053000" />
+      <workItem from="1730158413245" duration="1079000" />
+      <workItem from="1730227390456" duration="13000" />
+      <workItem from="1730246556126" duration="7293000" />
+      <workItem from="1730320472583" duration="1860000" />
+      <workItem from="1730338740170" duration="102000" />
+      <workItem from="1730427713467" duration="10454000" />
+      <workItem from="1730439131182" duration="25000" />
+      <workItem from="1730471326369" duration="10163000" />
+    </task>
+    <task id="LOCAL-00001" summary="&quot;implementacion sistema de reservas&quot;">
+      <option name="closed" value="true" />
+      <created>1730134139400</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730134139400</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;pagable books&quot;">
+      <option name="closed" value="true" />
+      <created>1730438509919</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730438509919</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;implementacion sistema de reservas&quot;" />
+    <MESSAGE value="&quot;pagable books&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;pagable books&quot;" />
+  </component>
+</project>

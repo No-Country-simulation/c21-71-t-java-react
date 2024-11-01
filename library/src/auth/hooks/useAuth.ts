@@ -13,27 +13,26 @@ export const useAuth = () => {
     const [login, dispatch] = useReducer(loginReducer, initialLogin)
     const navigate = useNavigate()
 
-    const handlerLogin = (userLogin: LoginForm) => {
-        const isLogin = loginUser(userLogin)
-        if (isLogin){
-            const user: User = {
-                email: 'admin@email.com',
-                name: 'Raul',
-                id: 1
-            }
-        
-            dispatch({
-                type: 'login',
-                payload: user
-            })
-            sessionStorage.setItem('login', JSON.stringify({
-                auth: true,
-                user: user
-            }))
-            navigate('/books')
-        } else{
-            alert("Error login")
+    const handlerLogin = async (userLogin: LoginForm) => {
+        const response = await loginUser(userLogin)
+        console.log(response)
+        const token = response?.data
+        const claims = JSON.parse(window.atob(token.split(".")[1]))
+        console.log(claims)
+        const user: User = {
+          email: claims.sub
         }
+        dispatch({
+            type: 'login',
+            payload: user
+        })
+        sessionStorage.setItem('login', JSON.stringify({
+            auth: true,
+            user: user
+        }))
+        sessionStorage.setItem('token', `Bearer ${token}`)
+        navigate('/books')           
+        
       }
     
       const handlerLogout = () => {
@@ -41,6 +40,7 @@ export const useAuth = () => {
           type: 'logout',
         })
         sessionStorage.removeItem('login')
+        sessionStorage.removeItem('token')
       }
     
     return {

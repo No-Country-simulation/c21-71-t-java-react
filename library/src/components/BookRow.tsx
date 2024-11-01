@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import { Book } from "../types"
 
 interface Props {
@@ -15,9 +16,11 @@ function BookRow({book, handlerRemoveBook}: Props) {
         <td className="px-6 py-4">{book.year}</td>
         <td className="px-6 py-4">{book.stock}</td>    
         <td className="px-6 py-4">
-          <button type="button" onClick={() => handlerRemoveBook(book.id)}>
-            eliminar
-          </button>  
+          <NavLink 
+          to={`/loan/` + book.id}
+          >
+            Rentar
+          </NavLink>
         </td>           
     </tr>
   )

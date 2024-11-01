@@ -5,9 +5,10 @@ import BookRow from "./BookRow"
 interface Props {
     books: Book[],
     handlerRemoveBook: (id: number) => void
+    handlerBookSelected: (id: number) => void
 }
 
-function BookList({books, handlerRemoveBook}: Props) {
+function BookList({books, handlerRemoveBook, handlerBookSelected}: Props) {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -23,7 +24,7 @@ function BookList({books, handlerRemoveBook}: Props) {
             {
                 books.map( book => {
                     return(
-                        <BookRow key={book.id} book={book} handlerRemoveBook = {handlerRemoveBook}/>
+                        <BookRow key={book.id} book={book} handlerRemoveBook = {handlerRemoveBook} handlerBookSelected={handlerBookSelected}/>
                     ) 
                 })
             }

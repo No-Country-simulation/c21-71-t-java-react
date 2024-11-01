@@ -4,6 +4,7 @@
   padding: 2rem;
   text-align: center; */
   background-color: #D9CE9A;
+  min-height: 100vh;
 }
 
 /* .logo {

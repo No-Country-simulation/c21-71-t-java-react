@@ -1,7 +1,7 @@
-import { useReducer } from "react"
+import { useReducer, useState } from "react"
 import { bookReducer } from "../reducers/booksReducer"
 import { Book } from "../types"
-import { findAll } from "../services/bookService"
+import { findAll, findBookById } from "../services/bookService"
 
 const initialBooks: Book[] = [
     {
@@ -37,14 +37,21 @@ const initialBooks: Book[] = [
   
 export const useBooks = () => {
     const [books, dispatch] = useReducer(bookReducer, initialBooks)
+    const [bookSelected, setBookSelected] = useState(1)
 
     const getBooks = async () => {
       const result = await findAll();
       console.log(result)
       dispatch({
         type: 'loadingBooks',
-        payload: result.data
+        payload: result.data.content
       })
+    }
+
+    const getBookById = async (id: number) => {
+      const result = await findBookById(id)
+      console.log(result)
+      return result?.data
     }
 
     const handlerAddBook = (book: Book) => {
@@ -63,11 +70,19 @@ export const useBooks = () => {
         })
     }
 
+    const handlerBookSelected = (id: number) => {
+      console.log(id)
+      setBookSelected(id)
+    }
+
     return {
         books,
         initialBook,
+        bookSelected,
         handlerAddBook,
         handlerRemoveBook,
-        getBooks
+        handlerBookSelected,
+        getBooks,
+        getBookById
     }
 }

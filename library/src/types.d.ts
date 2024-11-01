@@ -17,8 +17,6 @@ export interface Login {
 }
 
 export interface User {
-    id: number,
-    name: string,
     email: string,
 }
 
@@ -27,4 +25,13 @@ export interface Register {
     lastName: string,
     email: string,
     password: string
+}
+
+export interface BookDetails{
+    title: string,
+    description: string,
+    genre: string,
+    pages: number,
+    year: number,
+    stock: number
 }
