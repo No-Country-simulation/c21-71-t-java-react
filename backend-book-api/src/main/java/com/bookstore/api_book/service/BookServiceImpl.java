@@ -95,7 +95,12 @@ public class BookServiceImpl implements BookService {
     }
 
     public List<BookResponse> searchBooks(String term, List<Long> genreIds) {
-        List<Book> books = bookRepository.searchBooks(term, genreIds);
+        List<Book> books;
+        if (genreIds == null || genreIds.isEmpty()) {
+            books = bookRepository.searchBooks(term, null);
+        } else {
+            books = bookRepository.searchBooks(term, genreIds);
+        }
         return books.stream()
                 .map(this::mapToBookResponse)
                 .collect(Collectors.toList());

@@ -30,4 +30,7 @@ public interface BookRepository  extends JpaRepository<Book, Long> {
             @Param("term") String term,
             @Param("genreIds") List<Long> genreIds);
 
+    @Query("SELECT b FROM Book b WHERE b.title LIKE %:term%")
+    List<Book> searchBooksByTitle(String term);
+
 }
