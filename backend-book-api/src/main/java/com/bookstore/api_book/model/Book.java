@@ -22,8 +22,13 @@ public class Book {
 
     private String isbn;
 
-    //TODO possible create a new table for publisherId
-    private int publishedId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     private String format;
 
@@ -32,8 +37,6 @@ public class Book {
     private int stock;
 
     private String description;
-
-    private int authorId;
 
     private String language;
 

@@ -3,24 +3,36 @@ package com.bookstore.api_book.service;
 import com.bookstore.api_book.dto.BookRequest;
 import com.bookstore.api_book.dto.BookResponse;
 import com.bookstore.api_book.dto.BookResponseDto;
+import com.bookstore.api_book.model.Author;
 import com.bookstore.api_book.model.Book;
 import com.bookstore.api_book.model.Genre;
+import com.bookstore.api_book.model.Publisher;
+import com.bookstore.api_book.repository.AuthorRepository;
 import com.bookstore.api_book.repository.BookRepository;
+import com.bookstore.api_book.repository.GenreRepository;
+import com.bookstore.api_book.repository.PublisherRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
+    private final AuthorRepository authorRepository;
+    private final GenreRepository genreRepository;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, PublisherRepository publisherRepository, AuthorRepository authorRepository, GenreRepository genreRepository) {
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
+        this.authorRepository = authorRepository;
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -98,12 +110,12 @@ public class BookServiceImpl implements BookService {
                 book.getGenres().stream()
                         .map(Genre::getGenreName)
                         .collect(Collectors.toSet()),
-                book.getPublishedId(),
+                book.getPublisher() != null ? book.getPublisher().getName(): null,
                 book.getFormat(),
                 book.getPages(),
                 book.getStock(),
                 book.getDescription(),
-                book.getAuthorId()
+                book.getAuthor() != null ? book.getAuthor().getName() + " " + book.getAuthor().getLastName() : null
         );
     }
 
@@ -112,17 +124,30 @@ public class BookServiceImpl implements BookService {
         book.setTitle(bookRequest.title());
         book.setYear(bookRequest.year());
         book.setIsbn(bookRequest.isbn());
-        book.setGenres(bookRequest.genres());
-        book.setPublishedId(bookRequest.publisherId());
-        book.setFormat(bookRequest.format());
+        book.setGenres(validateGenres(bookRequest.genres()));
+        if (bookRequest.publisherId() != 0) {
+            Publisher publisher = publisherRepository.findById((long) bookRequest.publisherId())
+                    .orElseThrow(() -> new RuntimeException("Publisher not found"));
+            book.setPublisher(publisher);
+        }        book.setFormat(bookRequest.format());
         book.setPages(bookRequest.pages());
         book.setLanguage(bookRequest.language());
         book.setStock(bookRequest.stock());
         book.setGenres(bookRequest.genres());
         book.setDescription(bookRequest.description());
-        book.setAuthorId(bookRequest.authorId());
-
+        if (bookRequest.authorId() != 0) {
+            Author author = authorRepository.findById((long) bookRequest.authorId())
+                    .orElseThrow(() -> new RuntimeException("Author not found"));
+            book.setAuthor(author);
+        }
         return book;
+    }
+
+    private Set<Genre> validateGenres(Set<Genre> genres) {
+        return genres.stream()
+                .map(genre -> genreRepository.findById(genre.getGenreId())
+                        .orElseThrow(() -> new RuntimeException("Genre not found: " + genre.getGenreId())))
+                .collect(Collectors.toSet());
     }
 
 }
