@@ -4,6 +4,7 @@ import com.bookstore.api_book.dto.BookRequest;
 import com.bookstore.api_book.dto.BookResponse;
 import com.bookstore.api_book.dto.BookResponseDto;
 import com.bookstore.api_book.model.Book;
+import com.bookstore.api_book.model.Genre;
 import com.bookstore.api_book.repository.BookRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -81,8 +82,29 @@ public class BookServiceImpl implements BookService {
                 .collect(Collectors.toList());
     }
 
+    public List<BookResponse> searchBooks(String term, List<Long> genreIds) {
+        List<Book> books = bookRepository.searchBooks(term, genreIds);
+        return books.stream()
+                .map(this::mapToBookResponse)
+                .collect(Collectors.toList());
+    }
+
+
     private BookResponse mapToBookResponse(Book book) {
-        return new BookResponse(book.getTitle(), book.getYear(), book.getIsbn(), book.getGenre(), book.getPublishedId(), book.getFormat(), book.getPages(), book.getStock(), book.getDescription(), book.getAuthorId());
+        return new BookResponse(
+                book.getTitle(),
+                book.getYear(),
+                book.getIsbn(),
+                book.getGenres().stream()
+                        .map(Genre::getGenreName)
+                        .collect(Collectors.toSet()),
+                book.getPublishedId(),
+                book.getFormat(),
+                book.getPages(),
+                book.getStock(),
+                book.getDescription(),
+                book.getAuthorId()
+        );
     }
 
     private Book mapToBook(BookRequest bookRequest) {
@@ -90,11 +112,13 @@ public class BookServiceImpl implements BookService {
         book.setTitle(bookRequest.title());
         book.setYear(bookRequest.year());
         book.setIsbn(bookRequest.isbn());
-        book.setGenre(bookRequest.genre());
+        book.setGenres(bookRequest.genres());
         book.setPublishedId(bookRequest.publisherId());
         book.setFormat(bookRequest.format());
         book.setPages(bookRequest.pages());
+        book.setLanguage(bookRequest.language());
         book.setStock(bookRequest.stock());
+        book.setGenres(bookRequest.genres());
         book.setDescription(bookRequest.description());
         book.setAuthorId(bookRequest.authorId());
 

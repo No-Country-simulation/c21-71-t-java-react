@@ -3,6 +3,7 @@ package com.bookstore.api_book.controller;
 import com.bookstore.api_book.dto.BookRequest;
 import com.bookstore.api_book.dto.BookResponse;
 import com.bookstore.api_book.dto.BookResponseDto;
+import com.bookstore.api_book.dto.SearchRequest;
 import com.bookstore.api_book.service.BookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -81,5 +82,13 @@ public class BookController {
     public Page<BookResponseDto> getBooksDto(@PageableDefault(page = 0, size = 5) Pageable pageable){
         return bookService.getAllBooksDto(pageable);
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<BookResponse>> searchBooks(
+           @RequestBody SearchRequest request) {
+
+        List<BookResponse> resultados = bookService.searchBooks(request.getSearchTerm(), request.getGenreIds());
+        return ResponseEntity.ok(resultados);
+    }
+
 
 }

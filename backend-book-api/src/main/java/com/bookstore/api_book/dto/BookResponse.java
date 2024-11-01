@@ -7,7 +7,7 @@ public record BookResponse(String title,
                            String isbn,
 
                            //TODO possible create array of genres
-                           String genre,
+                           Set<String> genres,
 
                            //TODO possible create a new table for publisherId
                            int publisherId,
