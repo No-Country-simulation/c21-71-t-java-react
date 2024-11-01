@@ -2,8 +2,11 @@ package com.bookstore.api_book.service;
 
 import com.bookstore.api_book.dto.BookRequest;
 import com.bookstore.api_book.dto.BookResponse;
+import com.bookstore.api_book.dto.BookResponseDto;
 import com.bookstore.api_book.model.Book;
 import com.bookstore.api_book.repository.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,6 +58,19 @@ public class BookServiceImpl implements BookService {
             }
         }
         return null;
+    }
+
+    @Override
+    public Page<BookResponse> getAllBooks(Pageable pageable) {
+        Page<Book> booksPage = bookRepository.findAll(pageable);
+
+        return booksPage.map(this::mapToBookResponse);
+    }
+
+    @Override
+    public List<BookResponseDto> getAllBooksDto() {
+        List<BookResponseDto> booksPage = bookRepository.getAllBooks();
+        return booksPage;
     }
 
     @Override

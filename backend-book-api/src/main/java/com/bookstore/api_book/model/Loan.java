@@ -24,6 +24,10 @@ public class Loan {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private LoanStatus status;
+
     private LocalDate loanDate;
 
     private LocalDate returnDate;
