@@ -16,7 +16,7 @@ import java.util.List;
 public interface BookRepository  extends JpaRepository<Book, Long> {
 
 
-@Query("SELECT new com.bookstore.api_book.dto.BookResponseDto(b.title, b.authorId, b.year, b.stock, COUNT(l)) " +
+@Query("SELECT new com.bookstore.api_book.dto.BookResponseDto(b.title, b.author.name, b.year, b.stock, COUNT(l)) " +
         "FROM Book b LEFT JOIN Loan l ON b.id = l.book.id " +
        "WHERE l.status IS NULL OR l.status NOT IN (com.bookstore.api_book.model.LoanStatus.RETURNED)"  +
         "GROUP BY b.id, b.title, b.year, b.stock")
@@ -29,5 +29,8 @@ public interface BookRepository  extends JpaRepository<Book, Long> {
     List<Book> searchBooks(
             @Param("term") String term,
             @Param("genreIds") List<Long> genreIds);
+
+    @Query("SELECT b FROM Book b WHERE b.title LIKE %:term%")
+    List<Book> searchBooksByTitle(String term);
 
 }

@@ -28,7 +28,7 @@ public class SecurityConfig {
                         (authorizeRequests) -> authorizeRequests
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/api/v1/books/**").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
 
 
                 ).sessionManagement(
