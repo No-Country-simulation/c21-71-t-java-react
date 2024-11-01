@@ -5,6 +5,7 @@ import com.bookstore.api_book.dto.LoanRequest;
 import com.bookstore.api_book.dto.LoanResponse;
 import com.bookstore.api_book.model.Book;
 import com.bookstore.api_book.model.Loan;
+import com.bookstore.api_book.model.LoanStatus;
 import com.bookstore.api_book.model.User;
 import com.bookstore.api_book.repository.BookRepository;
 import com.bookstore.api_book.repository.LoanRepository;
@@ -40,7 +41,7 @@ public class LoanServiceImpl implements LoanService {
             throw new RuntimeException("Book has no stock");
         }
 
-        User user = userRepository.findById(loanRequest.userId()).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findByEmail(loanRequest.email()).orElseThrow(() -> new RuntimeException("User not found"));
 
         LocalDate loanDate = LocalDate.now();
         LocalDate returnDate = loanDate.plusMonths(1);
@@ -53,12 +54,18 @@ public class LoanServiceImpl implements LoanService {
         loan.setUser(user);
         loan.setLoanDate(loanDate);
         loan.setReturnDate(returnDate);
+        loan.setStatus(LoanStatus.PENDING);
         return mapToLoanResponse(loanRepository.save(loan));
     }
 
     @Override
     public Loan returnLoan(Long loanId) {
         Loan loan = loanRepository.findById(loanId).orElseThrow(() -> new RuntimeException("Loan not found"));
+        if (LocalDate.now().isAfter(loan.getReturnDate())){
+            loan.setStatus(LoanStatus.OVERDUE);
+        } else{
+            loan.setStatus(LoanStatus.RETURNED);
+        }
         Book book = loan.getBook();
         book.increaseStock();
         bookRepository.save(book);
